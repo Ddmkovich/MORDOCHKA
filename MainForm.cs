@@ -17,17 +17,19 @@ namespace MORDOCHKA
         int pageNumber = 0; // текущая страница
         int rowCount;
         int maxRows;
-        DataTable tagTbl = new DataTable();
         DataSet ds;
-        string connectionString = @"Server=10.10.1.24;Database=PolitDV;User id =pro-41;Password=Pro_41student;TrustServerCertificate =True;";
+        Classes.Connection connection = new Classes.Connection();
+        Classes.Querys querys = new Classes.Querys();
+        
         public MainForm()
         {
             InitializeComponent();
+           
             dgvClient.SelectionMode =DataGridViewSelectionMode.FullRowSelect;
             dgvClient.AllowUserToAddRows = false;
-            Query(connectionString, GetSql());
+            Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
             rowCount = pageSize;
-            maxRows = Convert.ToInt32(RowCount(connectionString, GetSql()));
+            maxRows = Convert.ToInt32(RowCount(connection.connectionString,  querys.GetSql(pageNumber,pageSize)));
             lbRows.Text = rowCount.ToString();
             lbAllRows.Text = maxRows.ToString();
         }
@@ -97,7 +99,7 @@ namespace MORDOCHKA
             pageNumber--;
             rowCount -= pageSize;
             lbRows.Text = rowCount.ToString();
-            Query(connectionString, GetSql());
+            Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
         }
 
         private void btNext_Click(object sender, EventArgs e)
@@ -106,12 +108,8 @@ namespace MORDOCHKA
             pageNumber++;
             rowCount += pageSize;
             lbRows.Text = rowCount.ToString();
-            Query(connectionString, GetSql());
-        }
-        private string GetSql()
-        {
-            return "SELECT * FROM Clients ORDER BY Id OFFSET ((" + pageNumber + ") * " + pageSize + ") " +
-                "ROWS FETCH NEXT " + pageSize + "ROWS ONLY";
+            Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
+
         }
         private string MaxId()
         {
@@ -130,7 +128,7 @@ namespace MORDOCHKA
                     rowCount = maxRows;
                 }
                 lbRows.Text = rowCount.ToString();
-                Query(connectionString, GetSql());
+                Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
             }
             else
             {
@@ -138,15 +136,103 @@ namespace MORDOCHKA
                 pageNumber = 0;
                 rowCount = pageSize;
                 lbRows.Text = rowCount.ToString();
-                Query(connectionString, GetSql());
+                Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
             }
             
         }
 
         private void tbFiltrName_TextChanged(object sender, EventArgs e)
         {
-            (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
-            String.Format("FirstName like '{0}%'", tbFiltrName.Text);
+
+            if (cmbFiltrGender.Text != "ВСЕ")
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("FirstName like '{0}%' AND GenderCode like '{1}%' OR LastName like '{0}%' AND GenderCode like '{1}%' OR Patronymic like '{0}%' AND GenderCode like '{1}%'", tbFiltrName.Text, cmbFiltrGender.Text);
+            }
+            else
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("FirstName like '{0}%' OR LastName like '{0}%' OR Patronymic like '{0}%'", tbFiltrName.Text);
+            }
+
+        }
+
+        private void tbFiltrMail_TextChanged(object sender, EventArgs e)
+        {
+
+            if (cmbFiltrGender.Text != "ВСЕ")
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("Email like '{0}%' AND GenderCode like '{1}%'", tbFiltrMail.Text, cmbFiltrGender.Text);
+            }
+            else
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("Email like '{0}%'", tbFiltrMail.Text);
+            }
+
+        }
+
+        private void tbFiltrPhone_TextChanged(object sender, EventArgs e)
+        {
+            
+            if (cmbFiltrGender.Text != "ВСЕ")
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("Phone like '{0}%' AND GenderCode like '{1}%'", tbFiltrPhone.Text, cmbFiltrGender.Text);
+            }
+            else
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("Phone like '{0}%'", tbFiltrPhone.Text);
+            }
+        }
+
+        private void cmbFiltrGender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFiltrGender.Text != "ВСЕ")
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("GenderCode like '{0}%'", cmbFiltrGender.Text);
+            }
+            else
+            {
+                (dgvClient.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("GenderCode like '{0}%'", "");
+            }
+        }
+
+        private void btSortLName_Click(object sender, EventArgs e)
+        {
+            Query(connection.connectionString, "SELECT * FROM Clients ORDER BY LastName OFFSET ((" + pageNumber + ") * " + pageSize + ") " +
+                  "ROWS FETCH NEXT " + pageSize + "ROWS ONLY");
+        }
+
+        private void btAddClient_Click(object sender, EventArgs e)
+        {
+            EdAddForm edAddForm = new EdAddForm(0,null,null,null,null,null,null,null,null);
+            edAddForm.ShowDialog();
+            
+            
+        }
+
+        private void dgvClient_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewSelectedCellCollection DGV = this.dgvClient.SelectedCells;
+            int id = Convert.ToInt32(this.dgvClient.CurrentRow.Cells[0].Value);
+            string name = this.dgvClient.CurrentRow.Cells[1].Value.ToString();
+            string lastName = this.dgvClient.CurrentRow.Cells[2].Value.ToString();
+            string patronymic = this.dgvClient.CurrentRow.Cells[3].Value.ToString();
+            string birthday = this.dgvClient.CurrentRow.Cells[4].Value.ToString();
+            string email = this.dgvClient.CurrentRow.Cells[6].Value.ToString();
+            string phone = this.dgvClient.CurrentRow.Cells[7].Value.ToString();
+            string genderCode = this.dgvClient.CurrentRow.Cells[8].Value.ToString();
+            string photoPath = this.dgvClient.CurrentRow.Cells[9].Value.ToString();
+            EdAddForm edAddForm = new EdAddForm(id,name,lastName,patronymic,birthday,email,phone,genderCode,photoPath);
+            
+            edAddForm.Text = "Изменить клиента";
+            edAddForm.ShowDialog();
+
         }
     }
 }
