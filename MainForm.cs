@@ -24,7 +24,10 @@ namespace MORDOCHKA
         public MainForm()
         {
             InitializeComponent();
-           
+            panel1.BackColor = Color.FromArgb(225, 228, 255);
+            panel2.BackColor = Color.FromArgb(225, 228, 255);
+            panel3.BackColor = Color.FromArgb(225, 228, 255);
+            panel4.BackColor = Color.FromArgb(225, 228, 255);
             dgvClient.SelectionMode =DataGridViewSelectionMode.FullRowSelect;
             dgvClient.AllowUserToAddRows = false;
             Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
@@ -201,19 +204,24 @@ namespace MORDOCHKA
                 String.Format("GenderCode like '{0}%'", "");
             }
         }
-
-        private void btSortLName_Click(object sender, EventArgs e)
-        {
-            Query(connection.connectionString, "SELECT * FROM Clients ORDER BY LastName OFFSET ((" + pageNumber + ") * " + pageSize + ") " +
-                  "ROWS FETCH NEXT " + pageSize + "ROWS ONLY");
-        }
-
         private void btAddClient_Click(object sender, EventArgs e)
         {
             EdAddForm edAddForm = new EdAddForm(0,null,null,null,null,null,null,null,null);
-            edAddForm.ShowDialog();
-            
-            
+            DialogResult dr = edAddForm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                dgvClient.DataSource = null;
+                Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
+                rowCount = pageSize;
+                maxRows = Convert.ToInt32(RowCount(connection.connectionString, querys.GetSql(pageNumber, pageSize)));
+                lbRows.Text = rowCount.ToString();
+                lbAllRows.Text = maxRows.ToString();
+                edAddForm.Close();
+            }
+            else
+            {
+                edAddForm.Close();
+            }
         }
 
         private void dgvClient_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -231,8 +239,49 @@ namespace MORDOCHKA
             EdAddForm edAddForm = new EdAddForm(id,name,lastName,patronymic,birthday,email,phone,genderCode,photoPath);
             
             edAddForm.Text = "Изменить клиента";
-            edAddForm.ShowDialog();
+            DialogResult dr = edAddForm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
+                rowCount = pageSize;
+                maxRows = Convert.ToInt32(RowCount(connection.connectionString, querys.GetSql(pageNumber, pageSize)));
+                lbRows.Text = rowCount.ToString();
+                lbAllRows.Text = maxRows.ToString();
+                edAddForm.Close();
+            }
+            else
+            {
+                edAddForm.Close();
+            }
 
+        }
+        private void btSortLName_Click(object sender, EventArgs e)
+        {
+            Query(connection.connectionString, "SELECT Clients.ID, FirstName,LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode,PhotoPath,max(StartTime) as LastVisit,COUNT(StartTime) as Visit " +
+        "FROM Clients LEFT JOIN ClientService " +
+        "ON ClientService.ClientID = Clients.ID " +
+        "Group by Clients.ID, FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode,PhotoPath " +
+        "ORDER BY LastName  OFFSET ((" + pageNumber + ") * " + pageSize + ") " +
+                "ROWS FETCH NEXT " + pageSize + "ROWS ONLY");
+        }
+        private void btFiltrVisitCount_Click(object sender, EventArgs e)
+        {
+            Query(connection.connectionString, "SELECT Clients.ID, FirstName,LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode,PhotoPath,max(StartTime) as LastVisit,COUNT(StartTime) as Visit " +
+        "FROM Clients LEFT JOIN ClientService " +
+        "ON ClientService.ClientID = Clients.ID " +
+        "Group by Clients.ID, FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode,PhotoPath " +
+        "ORDER BY Visit  DESC OFFSET ((" + pageNumber + ") * " + pageSize + ") " +
+                "ROWS FETCH NEXT " + pageSize + "ROWS ONLY");
+        }
+
+        private void btFiltrLastVisit_Click(object sender, EventArgs e)
+        {
+            Query(connection.connectionString, "SELECT Clients.ID, FirstName,LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode,PhotoPath,max(StartTime) as LastVisit,COUNT(StartTime) as Visit " +
+        "FROM Clients LEFT JOIN ClientService " +
+        "ON ClientService.ClientID = Clients.ID " +
+        "Group by Clients.ID, FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode,PhotoPath " +
+        "ORDER BY LastVisit DESC OFFSET ((" + pageNumber + ") * " + pageSize + ") " +
+                "ROWS FETCH NEXT " + pageSize + "ROWS ONLY");
         }
     }
 }

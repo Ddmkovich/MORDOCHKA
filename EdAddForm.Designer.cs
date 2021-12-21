@@ -45,126 +45,144 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pbAvatar = new System.Windows.Forms.PictureBox();
             this.btSaveEdit = new System.Windows.Forms.Button();
-            this.tbGender = new System.Windows.Forms.TextBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.ofdImage = new System.Windows.Forms.OpenFileDialog();
             this.btAddImage = new System.Windows.Forms.Button();
+            this.cmbGenderCode = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.Size = new System.Drawing.Size(17, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Id";
             // 
             // tbId
             // 
             this.tbId.Enabled = false;
+            this.tbId.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbId.Location = new System.Drawing.Point(12, 29);
             this.tbId.Name = "tbId";
-            this.tbId.Size = new System.Drawing.Size(140, 20);
+            this.tbId.Size = new System.Drawing.Size(140, 21);
             this.tbId.TabIndex = 1;
             // 
             // tbName
             // 
+            this.tbName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbName.Location = new System.Drawing.Point(12, 73);
+            this.tbName.MaxLength = 50;
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(140, 20);
+            this.tbName.Size = new System.Drawing.Size(140, 21);
             this.tbName.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(13, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Имя";
             // 
             // tbLName
             // 
+            this.tbLName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbLName.Location = new System.Drawing.Point(12, 118);
+            this.tbLName.MaxLength = 50;
             this.tbLName.Name = "tbLName";
-            this.tbLName.Size = new System.Drawing.Size(140, 20);
+            this.tbLName.Size = new System.Drawing.Size(140, 21);
             this.tbLName.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(13, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Фамилия";
             // 
             // tbPatron
             // 
+            this.tbPatron.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbPatron.Location = new System.Drawing.Point(12, 157);
+            this.tbPatron.MaxLength = 50;
             this.tbPatron.Name = "tbPatron";
-            this.tbPatron.Size = new System.Drawing.Size(140, 20);
+            this.tbPatron.Size = new System.Drawing.Size(140, 21);
             this.tbPatron.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(13, 141);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Отчество";
             // 
             // tbEmail
             // 
+            this.tbEmail.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbEmail.Location = new System.Drawing.Point(12, 196);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(140, 20);
+            this.tbEmail.Size = new System.Drawing.Size(140, 21);
             this.tbEmail.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(13, 180);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Почта";
             // 
             // tbPhone
             // 
+            this.tbPhone.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbPhone.Location = new System.Drawing.Point(12, 235);
+            this.tbPhone.MaxLength = 20;
             this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(140, 20);
+            this.tbPhone.Size = new System.Drawing.Size(140, 21);
             this.tbPhone.TabIndex = 11;
             this.tbPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhone_KeyPress);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(13, 219);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Телефон";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.Location = new System.Drawing.Point(13, 258);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 13);
+            this.label7.Size = new System.Drawing.Size(26, 13);
             this.label7.TabIndex = 12;
             this.label7.Text = "Пол";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(13, 297);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.Size = new System.Drawing.Size(87, 13);
             this.label8.TabIndex = 14;
             this.label8.Text = "Дата рождения";
             // 
@@ -178,6 +196,8 @@
             // 
             // btSaveEdit
             // 
+            this.btSaveEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSaveEdit.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btSaveEdit.Location = new System.Drawing.Point(391, 406);
             this.btSaveEdit.Name = "btSaveEdit";
             this.btSaveEdit.Size = new System.Drawing.Size(75, 23);
@@ -186,19 +206,13 @@
             this.btSaveEdit.UseVisualStyleBackColor = true;
             this.btSaveEdit.Click += new System.EventHandler(this.btSaveEdit_Click);
             // 
-            // tbGender
-            // 
-            this.tbGender.Location = new System.Drawing.Point(12, 274);
-            this.tbGender.Name = "tbGender";
-            this.tbGender.Size = new System.Drawing.Size(140, 20);
-            this.tbGender.TabIndex = 13;
-            // 
             // dtpBirthday
             // 
+            this.dtpBirthday.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBirthday.Location = new System.Drawing.Point(12, 313);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(140, 20);
+            this.dtpBirthday.Size = new System.Drawing.Size(140, 21);
             this.dtpBirthday.TabIndex = 18;
             // 
             // ofdImage
@@ -207,6 +221,8 @@
             // 
             // btAddImage
             // 
+            this.btAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btAddImage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btAddImage.Location = new System.Drawing.Point(360, 144);
             this.btAddImage.Name = "btAddImage";
             this.btAddImage.Size = new System.Drawing.Size(75, 23);
@@ -215,18 +231,34 @@
             this.btAddImage.UseVisualStyleBackColor = true;
             this.btAddImage.Click += new System.EventHandler(this.btAddImage_Click);
             // 
+            // cmbGenderCode
+            // 
+            this.cmbGenderCode.BackColor = System.Drawing.Color.White;
+            this.cmbGenderCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGenderCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbGenderCode.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbGenderCode.FormattingEnabled = true;
+            this.cmbGenderCode.Items.AddRange(new object[] {
+            "м",
+            "ж"});
+            this.cmbGenderCode.Location = new System.Drawing.Point(12, 273);
+            this.cmbGenderCode.Name = "cmbGenderCode";
+            this.cmbGenderCode.Size = new System.Drawing.Size(140, 21);
+            this.cmbGenderCode.TabIndex = 20;
+            // 
             // EdAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(476, 441);
+            this.Controls.Add(this.cmbGenderCode);
             this.Controls.Add(this.btAddImage);
             this.Controls.Add(this.dtpBirthday);
             this.Controls.Add(this.btSaveEdit);
             this.Controls.Add(this.pbAvatar);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.tbGender);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbPhone);
             this.Controls.Add(this.label6);
@@ -270,9 +302,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pbAvatar;
         private System.Windows.Forms.Button btSaveEdit;
-        private System.Windows.Forms.TextBox tbGender;
         private System.Windows.Forms.DateTimePicker dtpBirthday;
         private System.Windows.Forms.OpenFileDialog ofdImage;
         private System.Windows.Forms.Button btAddImage;
+        private System.Windows.Forms.ComboBox cmbGenderCode;
     }
 }
