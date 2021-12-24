@@ -126,11 +126,11 @@ namespace MORDOCHKA
                     using (SqlConnection connection = new SqlConnection(connection1.connectionString))
                     using (SqlCommand command = connection.CreateCommand())
                     {
+                        //SQL запрос на добавление данныых  в БД
                         command.CommandText = "Insert into Clients (FirstName, LastName, Patronymic,Birthday,RegistrationDate,Email,Phone,GenderCode,PhotoPath) " +
                             "Values (@name, @lName,@patronymic," +
                             "@birthday,@RegistrationDate,@Email,@Phone,@GenderCode,@PhotoPath)";
-
-                        //command.Parameters.Add("@id", SqlDbType.Int);
+                        //параметры для SQL запроса
                         command.Parameters.AddWithValue("@name", tbName.Text);
                         command.Parameters.AddWithValue("@lName", tbLName.Text);
                         command.Parameters.AddWithValue("@patronymic", tbPatron.Text);

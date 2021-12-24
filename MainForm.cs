@@ -206,8 +206,11 @@ namespace MORDOCHKA
         }
         private void btAddClient_Click(object sender, EventArgs e)
         {
+            //Этот метод открывает новую форму и передаёт необходимые данные для открытия формы
             EdAddForm edAddForm = new EdAddForm(0,null,null,null,null,null,null,null,null);
             DialogResult dr = edAddForm.ShowDialog(this);
+            //Этот участок кода принимает завершение работы
+            //окна "Добавления клиента", после чего обновляет или не обновляет, данные в основной форме таблицы
             if (dr == DialogResult.OK)
             {
                 dgvClient.DataSource = null;
@@ -226,6 +229,7 @@ namespace MORDOCHKA
 
         private void dgvClient_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Обработка выбора ячейки, загрузка и передача данных в форму
             DataGridViewSelectedCellCollection DGV = this.dgvClient.SelectedCells;
             int id = Convert.ToInt32(this.dgvClient.CurrentRow.Cells[0].Value);
             string name = this.dgvClient.CurrentRow.Cells[1].Value.ToString();
@@ -240,6 +244,7 @@ namespace MORDOCHKA
             
             edAddForm.Text = "Изменить клиента";
             DialogResult dr = edAddForm.ShowDialog(this);
+            //Если редактирование завершено успешно, данные в главной таблицуе обновятся
             if (dr == DialogResult.OK)
             {
                 Query(connection.connectionString, querys.GetSql(pageNumber, pageSize));
